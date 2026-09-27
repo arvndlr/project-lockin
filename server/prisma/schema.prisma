@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  TEACHER
+  STUDENT
+}
+
+enum LogType {
+  DEPOSIT
+  RETRIEVE
+  INTRUSION
+  OVERRIDE
+}
+
+model User {
+  id           String   @id @default(cuid())
+  role         Role
+  name         String
+  username     String   @unique
+  passwordHash String
+  qrToken      String?  @unique
+  createdAt    DateTime @default(now())
+
+  slotId     String?
+  slot       Slot?     @relation("SlotOccupants", fields: [slotId], references: [id], onDelete: SetNull)
+  scheduleId String?
+  schedule   Schedule? @relation("StudentSchedule", fields: [scheduleId], references: [id], onDelete: SetNull)
+
+  schedulesTaught Schedule[] @relation("TeacherSchedules")
+  logs            Log[]      @relation("StudentLogs")
+
+  @@index([slotId])
+  @@index([scheduleId])
+}
+
+model Slot {
+  id        String   @id @default(cuid())
+  label     String
+  qrToken   String   @unique
+  createdAt DateTime @default(now())
+
+  students User[] @relation("SlotOccupants")
+  logs     Log[]
+}
+
+model Schedule {
+  id           String   @id @default(cuid())
+  teacherId    String
+  teacher      User     @relation("TeacherSchedules", fields: [teacherId], references: [id], onDelete: Restrict)
+  sectionLabel String
+  days         Int[]
+  startTime    String
+  endTime      String
+  createdAt    DateTime @default(now())
+
+  students User[] @relation("StudentSchedule")
+  logs     Log[]
+
+  @@index([teacherId])
+}
+
+// Singleton row (id is always "kiosk") holding the live state of the shared
+// locker station: whether a teacher has opened a deposit collection session
+// ("unlocked the cabinet"), and which single student (if any) is currently
+// mid-placement — this is what makes the kiosk process students one at a
+// time and refuse the next scan until the current one is resolved.
+model KioskState {
+  id                     String    @id @default("kiosk")
+  depositSessionOpen     Boolean   @default(false)
+  depositSessionTeacherId String?
+  depositSessionScheduleId String?
+  inProgressStudentId    String?
+  inProgressSlotId       String?
+  inProgressStartedAt    DateTime?
+}
+
+model Log {
+  id           String    @id @default(cuid())
+  type         LogType
+  studentId    String?
+  student      User?     @relation("StudentLogs", fields: [studentId], references: [id], onDelete: SetNull)
+  studentName  String
+  slotId       String?
+  slot         Slot?     @relation(fields: [slotId], references: [id], onDelete: SetNull)
+  slotLabel    String?
+  scheduleId   String?
+  schedule     Schedule? @relation(fields: [scheduleId], references: [id], onDelete: SetNull)
+  note         String?
+  acknowledged Boolean   @default(false)
+  timestamp    DateTime  @default(now())
+
+  @@index([slotId])
+  @@index([studentId])
+  @@index([type])
+}

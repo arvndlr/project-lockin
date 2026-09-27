@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project LockIn — Locker Scanner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">📡</span>
+      <div>
+        <h1>Project LockIn</h1>
+        <p>Locker Scanning Station</p>
+      </div>
+    </div>
+    <div class="topbar-right"><a href="/index.html">Staff sign in</a></div>
+  </header>
+
+  <main class="wrap">
+    <div id="banner-area"></div>
+
+    <section class="panel scanner-box" id="scan-view">
+      <h2>Scan your QR code</h2>
+      <div id="qr-reader"></div>
+      <p class="hint" style="margin-top:10px;">Hold your Project LockIn QR code steady in front of the camera.</p>
+
+      <h3>No camera available?</h3>
+      <div class="form-row">
+        <div class="field">
+          <label for="sim-student">Simulate scan for</label>
+          <select id="sim-student"></select>
+        </div>
+      </div>
+      <button class="secondary" id="sim-scan-btn">Simulate Scan</button>
+    </section>
+
+    <section class="panel confirm-screen" id="confirm-view" style="display:none;">
+      <h2 id="confirm-title"></h2>
+      <p id="confirm-sub" class="hint"></p>
+      <p>Please confirm — is the phone in the locker actually yours?</p>
+      <div class="confirm-actions">
+        <button class="ok" id="btn-correct">✅ Yes, it's mine</button>
+        <button class="danger" id="btn-wrong">🚨 No, wrong phone</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="vendor/html5-qrcode.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/kiosk.js"></script>
+</body>
+</html>

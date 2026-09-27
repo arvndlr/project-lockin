@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project LockIn — Sign In</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login-shell">
+    <div class="login-card">
+      <div class="brand-mark">🔒</div>
+      <h1>Project LockIn</h1>
+      <p>ICCBI Classroom Smartphone Organizer</p>
+
+      <form id="login-form">
+        <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" autocomplete="username" required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" autocomplete="current-password" required />
+        </div>
+        <button type="submit">Sign In</button>
+      </form>
+      <div class="error-msg" id="error"></div>
+
+      <div class="demo-logins">
+        <strong>Demo accounts</strong><br />
+        Admin — <code>admin / admin123</code><br />
+        Teacher — <code>teacher1 / teacher123</code><br />
+        Student — <code>student1 / student123</code>
+        <br /><br />
+        Scanning station (no login): <a href="/kiosk.html">/kiosk.html</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const errorEl = document.getElementById("error");
+      errorEl.textContent = "";
+      try {
+        const { user } = await api("POST", "/api/login", { username, password });
+        window.location.href = `/${user.role}.html`;
+      } catch (err) {
+        errorEl.textContent = err.message;
+      }
+    });
+
+    // If already logged in, skip straight to the right dashboard.
+    api("GET", "/api/me").then(({ user }) => {
+      if (user) window.location.href = `/${user.role}.html`;
+    });
+  </script>
+</body>
+</html>

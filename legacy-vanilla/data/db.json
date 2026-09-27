@@ -1,0 +1,115 @@
+{
+  "users": [
+    {
+      "id": "usr_47367c6f6f",
+      "role": "admin",
+      "name": "System Administrator",
+      "username": "admin",
+      "passwordHash": "$2b$08$hmonPrrt0Pj4GJPHaMGpPe05i9QyOG1qPCMMk5PISE6VZgt12CWb6",
+      "createdAt": 1788363462522
+    },
+    {
+      "id": "usr_ec8130148c",
+      "role": "teacher",
+      "name": "Ms. Dyrelle Dominique Malunes",
+      "username": "teacher1",
+      "passwordHash": "$2b$08$gGEgpu2UhXwY5ubG5lzJROebazFKI2nZ2idI1jArBVJ5tng2S/KCm",
+      "createdAt": 1788363462539
+    },
+    {
+      "id": "usr_a64331ddc7",
+      "role": "student",
+      "name": "Manguiat, John Gabriel G.",
+      "username": "student1",
+      "passwordHash": "$2b$08$B5yYBO.jLmaPPC64TsIyBOhn9C07ESUksOm7kNOlyJ/AXevXMurHW",
+      "qrToken": "7iIl5v_UuDpY",
+      "slotId": "slot_587357f6f0",
+      "scheduleId": "sch_289a7013d2",
+      "createdAt": 1788363462557
+    },
+    {
+      "id": "usr_5897451dcf",
+      "role": "student",
+      "name": "Candaza, Prince Abrielle",
+      "username": "student2",
+      "passwordHash": "$2b$08$GcwKzJZoISwdDaoMbOTP/e8umlGEF7nCZIECYGnVF5o7N8SFBPmQm",
+      "qrToken": "DTfprrw6ILUP",
+      "slotId": "slot_32798e9e49",
+      "scheduleId": "sch_289a7013d2",
+      "createdAt": 1788363462574
+    },
+    {
+      "id": "usr_8576830515",
+      "role": "student",
+      "name": "Caraig, Kevin Lester G.",
+      "username": "student3",
+      "passwordHash": "$2b$08$2j0ltL.88PeYUEg9zQyJzOkCqFWRYmrKAtlNU/HoV2.cuzy/dte5S",
+      "qrToken": "NxbQtO5fo3QD",
+      "slotId": "slot_ca9ed3c0c2",
+      "scheduleId": "sch_289a7013d2",
+      "createdAt": 1788363462591
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot_587357f6f0",
+      "label": "Locker 01",
+      "qrToken": "0rxioyAjr1uP",
+      "createdAt": 1788363462539
+    },
+    {
+      "id": "slot_32798e9e49",
+      "label": "Locker 02",
+      "qrToken": "VS6VZByFLMQR",
+      "createdAt": 1788363462539
+    },
+    {
+      "id": "slot_ca9ed3c0c2",
+      "label": "Locker 03",
+      "qrToken": "ypUy96ShJ2Wb",
+      "createdAt": 1788363462539
+    },
+    {
+      "id": "slot_e7f1995296",
+      "label": "Locker 04",
+      "qrToken": "3_IEIw0l1pm5",
+      "createdAt": 1788363462539
+    },
+    {
+      "id": "slot_1c62b8210a",
+      "label": "Locker 05",
+      "qrToken": "ETrex0VuFdFa",
+      "createdAt": 1788363462539
+    },
+    {
+      "id": "slot_de8b144b5f",
+      "label": "Locker 06",
+      "qrToken": "hGljmT4SxDj9",
+      "createdAt": 1788363462539
+    },
+    {
+      "id": "slot_7681247c19",
+      "label": "Locker 6",
+      "qrToken": "AarBfFXpYN9-",
+      "createdAt": 1788363718605
+    }
+  ],
+  "schedules": [
+    {
+      "id": "sch_289a7013d2",
+      "teacherId": "usr_ec8130148c",
+      "sectionLabel": "Stem 11 - Corinthian",
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "startTime": "23:00",
+      "endTime": "00:00",
+      "createdAt": 1788363980363
+    }
+  ],
+  "logs": []
+}

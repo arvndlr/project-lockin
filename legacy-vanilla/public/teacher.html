@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project LockIn — Teacher</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">🔒</span>
+      <div>
+        <h1>Project LockIn</h1>
+        <p>Teacher Dashboard</p>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span id="who"></span>
+      <button class="secondary" onclick="logout()">Log Out</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="alert-area"></div>
+
+    <section class="panel" id="period-banner"></section>
+
+    <section class="panel">
+      <h2>Locker Status</h2>
+      <div class="slot-grid" id="slot-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Intrusion Alerts</h2>
+      <table>
+        <thead><tr><th>Time</th><th>Locker</th><th>Detail</th><th></th></tr></thead>
+        <tbody id="intrusion-body"></tbody>
+      </table>
+    </section>
+
+    <section class="panel">
+      <h2>History Log</h2>
+      <table>
+        <thead><tr><th>Time</th><th>Event</th><th>Student</th><th>Locker</th></tr></thead>
+        <tbody id="log-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/teacher.js"></script>
+</body>
+</html>

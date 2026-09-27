@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project LockIn — Admin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">🔒</span>
+      <div>
+        <h1>Project LockIn</h1>
+        <p>Admin Console</p>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span id="who"></span>
+      <button class="secondary" onclick="logout()">Log Out</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="users">Users</button>
+      <button class="tab-btn" data-tab="slots">Lockers</button>
+      <button class="tab-btn" data-tab="schedules">Schedules</button>
+    </div>
+
+    <!-- USERS -->
+    <div class="tab-panel active" id="tab-users">
+      <div class="grid-2">
+        <section class="panel">
+          <h2>Add User</h2>
+          <form id="user-form">
+            <div class="field">
+              <label for="u-role">Role</label>
+              <select id="u-role">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="u-name">Full name</label><input id="u-name" required /></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="u-username">Username</label><input id="u-username" required /></div>
+              <div class="field"><label for="u-password">Password</label><input id="u-password" type="text" required /></div>
+            </div>
+            <div id="student-fields">
+              <div class="form-row">
+                <div class="field">
+                  <label for="u-slot">Assigned locker</label>
+                  <select id="u-slot"><option value="">Auto-assign next available</option></select>
+                </div>
+                <div class="field">
+                  <label for="u-schedule">Schedule</label>
+                  <select id="u-schedule"><option value="">Always available</option></select>
+                </div>
+              </div>
+            </div>
+            <button type="submit">Create Account</button>
+          </form>
+          <div class="error-msg" id="user-error"></div>
+        </section>
+
+        <section class="panel">
+          <h2>All Users</h2>
+          <table>
+            <thead><tr><th>Name</th><th>Role</th><th>Username</th><th>Locker</th><th>Schedule</th><th></th></tr></thead>
+            <tbody id="user-body"></tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+
+    <!-- SLOTS -->
+    <div class="tab-panel" id="tab-slots">
+      <div class="grid-2">
+        <section class="panel">
+          <h2>Add Locker</h2>
+          <form id="slot-form">
+            <div class="field"><label for="s-label">Label</label><input id="s-label" placeholder="e.g. Locker 07" required /></div>
+            <button type="submit">Create Locker + QR</button>
+          </form>
+          <div class="error-msg" id="slot-error"></div>
+        </section>
+
+        <section class="panel">
+          <h2>All Lockers</h2>
+          <div class="slot-grid" id="slot-grid-admin"></div>
+        </section>
+      </div>
+    </div>
+
+    <!-- SCHEDULES -->
+    <div class="tab-panel" id="tab-schedules">
+      <div class="grid-2">
+        <section class="panel">
+          <h2 id="schedule-form-title">Add Schedule</h2>
+          <form id="schedule-form">
+            <div class="field">
+              <label for="sc-teacher">Teacher</label>
+              <select id="sc-teacher"></select>
+            </div>
+            <div class="field"><label for="sc-label">Section label</label><input id="sc-label" placeholder="e.g. STEM 11 - Corinthians" required /></div>
+            <div class="field">
+              <label>Days</label>
+              <div class="checkbox-row" id="sc-days">
+                <label><input type="checkbox" value="1" checked>Mon</label>
+                <label><input type="checkbox" value="2" checked>Tue</label>
+                <label><input type="checkbox" value="3" checked>Wed</label>
+                <label><input type="checkbox" value="4" checked>Thu</label>
+                <label><input type="checkbox" value="5" checked>Fri</label>
+                <label><input type="checkbox" value="6">Sat</label>
+                <label><input type="checkbox" value="0">Sun</label>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="sc-start">Start time</label><input id="sc-start" type="time" value="07:00" required /></div>
+              <div class="field"><label for="sc-end">End time</label><input id="sc-end" type="time" value="12:00" required /></div>
+            </div>
+            <div class="form-row">
+              <button type="submit" id="schedule-submit-btn">Create Schedule</button>
+              <button type="button" class="secondary" id="schedule-cancel-btn" style="display:none;">Cancel</button>
+            </div>
+          </form>
+          <div class="error-msg" id="schedule-error"></div>
+        </section>
+
+        <section class="panel">
+          <h2>All Schedules</h2>
+          <table>
+            <thead><tr><th>Section</th><th>Teacher</th><th>Days</th><th>Time</th><th>Now</th><th></th></tr></thead>
+            <tbody id="schedule-body"></tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

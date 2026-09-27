@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LockIn bench test card</title>
+<style>
+  :root { color-scheme: light; }
+  body {
+    margin: 0; padding: 24px;
+    background: #fff; color: #000;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  h1 { font-size: 16pt; margin: 0 0 4px; }
+  p  { font-size: 10pt; color: #52525b; margin: 0 0 16px; line-height: 1.5; }
+
+  .qr svg { width: 34mm; height: 34mm; display: block; shape-rendering: crispEdges; }
+
+  .token {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 14pt; font-weight: 700;
+    margin-top: 10px; letter-spacing: 1px;
+  }
+
+  .ruler { margin-top: 28px; }
+  .bar {
+    width: 34mm; height: 10px;
+    background: repeating-linear-gradient(90deg, #000 0 2mm, #fff 2mm 4mm);
+    border: 1px solid #000;
+  }
+  .ruler small { font-size: 9pt; color: #52525b; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ESP32-CAM bench test card</h1>
+  <p>
+    Hold this at about <strong>8&nbsp;cm</strong> from the lens. The serial monitor
+    should print the token below.
+  </p>
+
+  <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h29v29H0z"/><path stroke="#000000" d="M4 4.5h7m1 0h4m2 0h7M4 5.5h1m5 0h1m1 0h1m1 0h2m2 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m1 0h2m2 0h1m1 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m3 0h1m3 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m4 0h2m1 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h7M14 11.5h3M4 12.5h1m2 0h6m1 0h1m1 0h2m2 0h1m1 0h3M4 13.5h1m2 0h1m1 0h1m2 0h2m2 0h1m3 0h2M5 14.5h3m1 0h4m9 0h1m1 0h1M4 15.5h2m1 0h2m4 0h3m1 0h1m1 0h2m1 0h3M6 16.5h3m1 0h4m3 0h2m1 0h3M12 17.5h1m1 0h1m1 0h3m5 0h1M4 18.5h7m1 0h3m1 0h1m1 0h1m1 0h1M4 19.5h1m5 0h1m1 0h2m2 0h3m3 0h1m1 0h1M4 20.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m2 0h1M4 21.5h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h3M4 22.5h1m1 0h3m1 0h1m5 0h1m3 0h2m1 0h2M4 23.5h1m5 0h1m2 0h4m1 0h1m1 0h5M4 24.5h7m1 0h5m1 0h2"/></svg>
+</div>
+  <div class="token">_-J2jJEJCsuX</div>
+
+  <div class="ruler">
+    <div class="bar"></div>
+    <small>
+      Measure this bar with a ruler — it should be <strong>34&nbsp;mm</strong>.
+      If it isn't, adjust browser zoom (Ctrl + / Ctrl -) until it is. Screen DPI
+      varies, so CSS millimetres are only approximate.
+    </small>
+  </div>
+</div>
+</body>
+</html>

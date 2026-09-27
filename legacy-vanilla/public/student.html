@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project LockIn — My QR Code</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">🔒</span>
+      <div>
+        <h1>Project LockIn</h1>
+        <p>Student</p>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span id="who"></span>
+      <button class="secondary" onclick="logout()">Log Out</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="qr-big">
+        <div class="hint">Show this to the scanner at your locker station</div>
+        <img id="qr-image" alt="Your personal QR code" />
+        <h2 id="student-name"></h2>
+        <p id="slot-label"></p>
+        <p id="schedule-label"></p>
+        <span class="pill" id="status-pill"></span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>My Recent Activity</h2>
+      <table>
+        <thead><tr><th>Time</th><th>Event</th><th>Locker</th></tr></thead>
+        <tbody id="log-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/student.js"></script>
+</body>
+</html>

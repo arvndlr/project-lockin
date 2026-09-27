@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-lockin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-lockin}
+      POSTGRES_DB: ${POSTGRES_DB:-lockin}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-lockin}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5433:5432"
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-lockin}:${POSTGRES_PASSWORD:-lockin}@db:5432/${POSTGRES_DB:-lockin}
+      SESSION_SECRET: ${SESSION_SECRET:-lockin-dev-secret-change-me}
+      COOKIE_SECURE: "false"
+    ports:
+      - "3000:4000"
+
+volumes:
+  db_data:
